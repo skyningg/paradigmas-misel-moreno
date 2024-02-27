@@ -1,25 +1,33 @@
 $(document).ready(function () {
-    const apiKey = '96b2b041931c86d8e81d8af32da15914';
-    const apiUrl = 'https://api.themoviedb.org/3/movie/popular';
+    const apiKey = 'dd76c530df4b95f311a6ef96e42c089e';
+    const apiUrl = 'https://api.themoviedb.org/3/movie/';
+    let currentEndpoint = 'popular';
 
-    fetchMovies();
+    function handleRequest(endpoint) {
+        currentEndpoint = endpoint;
+        fetchMovies();
+    }
 
     function fetchMovies() {
         $.ajax({
-            url: apiUrl,
+            url: apiUrl + currentEndpoint,
             type: 'GET',
             data: { api_key: apiKey },
             success: function (data) {
                 displayMovies(data.results);
             },
-            error: function (error) {
-                console.log('Error fetching movies:', error);
+            error: function (xhr, status, error) {
+                console.log('Error fetching movies:');
+                console.log('Status:', status);
+                console.log('Error:', error);
+                console.log('Response:', xhr.responseText);
             }
         });
     }
 
     function displayMovies(movies) {
         const moviesContainer = $('#movies-container');
+        moviesContainer.empty();
 
         movies.forEach(movie => {
             const movieCard = `
@@ -34,4 +42,27 @@ $(document).ready(function () {
             moviesContainer.append(movieCard);
         });
     }
+
+    $('#allMovies').on('click', function (e) {
+        e.preventDefault();
+        handleRequest('now_playing');
+    });
+
+    $('#popularMovies').on('click', function (e) {
+        e.preventDefault();
+        handleRequest('popular');
+    });
+
+    $('#fetchMovies').on('click', function (e) {
+        e.preventDefault();
+        handleRequest('top_rated');
+    });
+
+    $('#cdnMovies').on('click', function (e) {
+        e.preventDefault();
+    });
+
+    fetchMovies();
 });
+
+
