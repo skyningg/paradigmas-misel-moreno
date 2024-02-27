@@ -1,3 +1,4 @@
+
 $(document).ready(function () {
     const apiKey = 'dd76c530df4b95f311a6ef96e42c089e';
     const apiUrl = 'https://api.themoviedb.org/3/movie/';
@@ -64,5 +65,4 @@ $(document).ready(function () {
 
     fetchMovies();
 });
-
 
