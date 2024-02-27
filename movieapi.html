@@ -3,20 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Películas Populares</title>
+    <title>Películas</title>
     <link rel="stylesheet" href="movieapi.css">
 </head>
 <body>
 
 <header>
-    <h1>Películas Populares</h1>
+    <h1>Películas</h1>
+    <nav>
+        <ul>
+            <li><a href="#" id="allMovies">Ver Todas las Películas (HTTP)</a></li>
+            <li><a href="#" id="popularMovies">Películas Populares (jQuery)</a></li>
+            <li><a href="#" id="fetchMovies">Ver Todas las Películas (Fetch)</a></li>
+            <li><a href="#" id="cdnMovies">Películas Populares (CDN)</a></li>
+        </ul>
+    </nav>
 </header>
 
 <div id="movies-container"></div>
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="script.js"></script>
 <script src="movieapi.js"></script>
-
 </body>
 </html>
+
+
+
 
